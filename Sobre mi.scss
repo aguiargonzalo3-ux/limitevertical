@@ -92,6 +92,24 @@ body {
   }
 }
 
+@media (max-width: 1200px) {
+    .card, .card-1 {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 800px) {
+    .card, .card-1 {
+        max-width: 100%;
+    }
+}
+
+
+@media (max-width: 500px) {
+    .card, .card-1 {
+        max-width: 100%;
+    }
+}
 /* --- ANIMACIONES --- */
 @keyframes loop-infinito {
   0% { transform: translateX(0); }

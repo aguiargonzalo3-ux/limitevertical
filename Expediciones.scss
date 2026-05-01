@@ -1,28 +1,41 @@
 /* --- VARIABLES --- */
 $font-main: sans-serif;
 $font-serif: 'Times New Roman', Times, serif;
-$color-nav: rgba(0, 0, 0, 0.7);
-$color-white: #ffffff;
-$color-text: #34495e;
+$color-bg-overlay: rgba(0, 0, 0, 0.7);
+$color-card-bg: white;
 $color-btn: #b6b8b9;
 $color-btn-hover: #a0a2a3;
-$transition-main: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+$color-text-dark: #34495e;
+$transition-smooth: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
-/* --- MIXINS (Plantillas reutilizables) --- */
+/* --- MIXINS (Reutilización de estilos) --- */
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 @mixin card-base {
     position: relative;
-    background: $color-white;
+    background: $color-card-bg;
     border-radius: 15px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
     overflow: visible;
-    transition: transform $transition-main, box-shadow 0.4s ease;
+    transition: $transition-smooth, box-shadow 0.4s ease;
     cursor: pointer;
     width: 100%;
+    margin: 0 auto 40px;
+    min-height: 450px;
+
+    &:hover {
+        transform: scale(1.03) translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
 }
 
-@mixin button-base {
+@mixin button-style {
     position: absolute;
     bottom: 0;
     left: 50%;
@@ -43,34 +56,34 @@ $transition-main: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
 }
 
-/* --- BASE & FONDO --- */
+/* --- ESTILOS BASE --- */
 body {
-    background: url(Fondos/aconcagua.jpg) no-repeat center center fixed;
-    background-size: cover;
+    background: {
+        image: url(Fondos/aconcagua.jpg);
+        size: cover;
+        repeat: no-repeat;
+        position: center;
+        attachment: fixed;
+    }
     margin: 0;
     padding: 0;
     min-height: 100vh;
     font-family: $font-main;
-    // Solución profesional para el footer al final
-    display: flex;
-    flex-direction: column;
 }
 
 /* --- NAVEGACIÓN --- */
 .nav {
     position: sticky;
     top: 0;
-    background-color: $color-nav;
-    color: $color-white;
+    background-color: $color-bg-overlay;
     padding: 15px;
     z-index: 1000;
-    display: flex;
-    justify-content: center;
+    @include flex-center;
     flex-wrap: wrap;
     gap: 10px;
 
     a {
-        color: $color-white;
+        color: white;
         text-decoration: none;
         transition: transform 0.3s ease;
         padding: 5px 10px;
@@ -83,9 +96,8 @@ body {
     }
 }
 
-/* --- GRIDS (Contenedores) --- */
+/* --- CONTENEDORES --- */
 .grid {
-    flex: 1; // Empuja el copyright hacia abajo
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
@@ -95,28 +107,21 @@ body {
 }
 
 .grid-2 {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    padding: 70px;
+    @include flex-center;
+    gap: 20px;
+    padding: 40px 20px;
+    flex-wrap: wrap; // <--- CRUCIAL: Esto permite que bajen si no hay espacio
 }
 
-/* --- TARJETAS (Cards) --- */
+/* --- TARJETAS --- */
 .card, .card-1 {
     @include card-base;
-    max-width: 400px;
-    min-height: 450px;
-
-    &:hover {
-        transform: scale(1.03) translateY(-10px);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-    }
 
     img, .tromen-3, .lanin-2 {
         width: 100%;
         height: 300px;
         object-fit: cover;
-        border-radius: 15px;
+        border-radius: 15px 15px 0 0;
     }
 
     p {
@@ -140,48 +145,73 @@ body {
             padding: 6px;
             border-radius: 6px;
             text-align: center;
-            color: $color-text;
+            color: $color-text-dark;
         }
     }
 }
 
-// Margen específico solicitado para .card
-.card {
-    margin: 0 auto 40px;
-}
-
 /* --- BOTONES --- */
 .boton, .boton2 {
-    @include button-base;
+    @include button-style;
 }
 
+/* --- FOOTER --- */
 .copyright {
     text-align: center;
-    color: $color-white;
+    color: white;
     padding: 20px;
     background: rgba(0, 0, 0, 0.5);
 }
 
-/* --- MEDIA QUERIES --- */
-@media (max-width: 768px) {
+/* --- RESPONSIVE (Uso de Nesting para Media Queries) --- */
+
+@media (max-width: 1200px) {
     .grid {
-        margin: 20px auto;
-        gap: 50px;
+        max-width: 95%;
+        gap: 20px;
     }
+}
 
+@media (max-width: 800px) {
     .nav a {
-        font-size: 0.85rem;
+        font-size: 0.9rem;
+        padding: 8px;
     }
-}
 
-@media (max-width: 480px) {
+    .grid-2 {
+        padding: 20px;
+        flex-direction: column;
+        align-items: center;
+    }
+
     .card, .card-1 {
-        max-width: 100%;
+        max-width: 90%; // Para que no toquen los bordes de la pantalla
+        width: 100%;
+
+        img, .tromen-3, .lanin-2 {
+            height: 250px;
+        }
     }
 }
 
-/* --- ANIMACIONES --- */
-@keyframes loop-infinito {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+@media (max-width: 500px) {
+    .nav {
+        flex-direction: column;
+        align-items: center;
+
+        a {
+            width: 100%;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+        padding: 10px;
+    }
+
+    .boton, .boton2 {
+        width: 80%;
+    }
 }

@@ -134,7 +134,7 @@ body {
 
 /* --- MEDIA QUERIES --- */
 
-@media (max-width: 900px) {
+@media (max-width: 800px) {
   .grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
@@ -148,7 +148,7 @@ body {
   }
 }
 
-@media (max-width: 650px) {
+@media (max-width: 500px) {
   .grid {
     grid-template-columns: 1fr;
     padding-top: 180px;
