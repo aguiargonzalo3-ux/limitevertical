@@ -1,0 +1,197 @@
+/* --- VARIABLES --- */
+$fuente-principal: sans-serif;
+$fuente-accent: 'Caveat', cursive;
+$fuente-serif: 'Times New Roman', Times, serif;
+$negro-transparente: rgba(0, 0, 0, 0.7);
+$negro-medio: rgba(0, 0, 0, 0.6);
+$blanco: #ffffff;
+$color-ig: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+$color-wsp: #25D366;
+
+/* --- BASE --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: url("Fondos/bolson.jpg") no-repeat center center fixed;
+  background-size: cover;
+  min-height: 100vh;
+  overflow-x: hidden;
+  font-family: $fuente-principal;
+  position: relative;
+
+  &::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: -1;
+  }
+}
+
+/* --- NAVEGACIÓN --- */
+.nav {
+  background-color: $negro-transparente;
+  color: $blanco;
+  padding: 15px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+
+  a {
+    color: $blanco;
+    text-decoration: none;
+    font-weight: bold;
+    font-family: $fuente-serif;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      color: #f0f0f0;
+      transform: scale(1.1);
+    }
+  }
+}
+
+/* --- CARRUSEL INFINITO --- */
+.ventana-carrusel {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  margin: 20px 0;
+
+  .carrusel {
+    display: flex;
+    width: max-content;
+    gap: 10px;
+    animation: loop-infinito 20s linear infinite;
+
+    &:hover {
+      animation-play-state: paused;
+    }
+
+    img {
+      width: 350px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+      flex-shrink: 0;
+    }
+  }
+}
+
+/* --- CONTENIDOS --- */
+.hero, section {
+  background-color: $negro-medio;
+  color: $blanco;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 20px auto;
+  max-width: 90%;
+}
+
+.p {
+  text-align: center;
+  font-size: 1.5rem;
+  font-family: $fuente-accent;
+  padding: 20px;
+}
+
+.dron {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 800px;
+  align-items: center;
+  margin: 0 auto;
+  gap: 20px;
+
+  video, iframe {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+}
+
+/* --- REDES SOCIALES --- */
+.card3 {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  padding: 20px;
+
+  .redesociales {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: #333;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+    .socialSvg {
+      width: 25px;
+      fill: $blanco;
+      transition: all 0.3s ease;
+    }
+
+    &:hover {
+      .socialSvg {
+        transform: scale(1.2);
+        animation: shake 0.5s ease-in-out;
+      }
+    }
+
+    &.contenedoruno:hover {
+      background: $color-ig;
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(214, 36, 159, 0.3);
+    }
+
+    &.contenedordos:hover {
+      background-color: $color-wsp;
+      transform: translateY(-5px) scale(1.1);
+      box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+    }
+  }
+}
+
+.copyright {
+  text-align: center;
+  color: $blanco;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+/* --- ANIMACIONES --- */
+@keyframes shake {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(10deg); }
+  50% { transform: rotate(-10deg); }
+  75% { transform: rotate(5deg); }
+}
+
+@keyframes loop-infinito {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* --- MEDIA QUERIES --- */
+@media (max-width: 768px) {
+  .nav { padding: 10px; font-size: 0.9rem; }
+  .hero, section { padding: 15px; }
+  .p { font-size: 1.2rem; }
+  .ventana-carrusel .carrusel img { width: 250px; height: 150px; }
+}
+
+@media (max-width: 480px) {
+  .nav { justify-content: space-evenly; }
+  .hero { font-size: 1rem; }
+}

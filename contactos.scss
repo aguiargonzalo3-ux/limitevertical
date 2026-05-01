@@ -1,0 +1,200 @@
+/* --- VARIABLES --- */
+$color-primario: rgba(0, 0, 0, 0.7);
+$color-blanco: #ffffff;
+$color-gris-claro: #f0f0f0;
+$color-enfoque: #007bff;
+$fuente-principal: 'Times New Roman', Times, serif;
+$sombra-suave: 0 8px 32px rgba(0, 0, 0, 0.1);
+$transicion: 0.3s ease;
+
+/* --- MIXINS (Reutilizables) --- */
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* --- BASE Y FONDO --- */
+body {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.5)), 
+                    url("Fondos/foto.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  font-family: $fuente-principal;
+  
+  // Solución para el copyright al final
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- NAVEGACIÓN --- */
+.nav {
+  position: sticky;
+  top: 0;
+  background-color: $color-primario;
+  color: $color-blanco;
+  padding: 15px;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+
+  a {
+    color: $color-blanco;
+    text-decoration: none;
+    margin-right: 15px;
+    transition: transform $transicion;
+
+    &:hover {
+      color: $color-gris-claro;
+      transform: scale(1.1);
+    }
+  }
+}
+
+/* --- CONTENEDOR PRINCIPAL --- */
+.contenedor {
+  flex: 1; // Empuja el copyright hacia abajo
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 50px;
+  padding: 80px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* --- FORMULARIO --- */
+.formulario {
+  flex: 1;
+  width: 100%;
+  max-width: 500px;
+
+  .form {
+    color: #333;
+    font-size: large;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: $sombra-suave;
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      outline: none;
+      transition: border-color $transicion;
+      font-size: 1rem;
+
+      &:focus {
+        border-color: $color-enfoque;
+        box-shadow: 0 0 5px rgba($color-enfoque, 0.5);
+      }
+    }
+
+    .input {
+      min-height: 150px;
+      resize: vertical;
+    }
+  }
+}
+
+button {
+  background-color: #111;
+  color: $color-blanco;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: $transicion;
+  width: fit-content;
+  align-self: center;
+
+  &:hover {
+    background-color: #444;
+    transform: translateY(-2px);
+  }
+}
+
+/* --- CONTACTOS --- */
+.Contactos {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  text-align: center;
+  color: #000;
+
+  .icono-gmail,
+  .boton-wsp {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: #000;
+    transition: $transicion;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+}
+
+.copyright {
+  text-align: center;
+  color: $color-blanco;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.5);
+  width: 100%;
+}
+
+/* --- MEDIA QUERIES --- */
+@media (max-width: 1200px) {
+  .contenedor {
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    padding-top: 40px;
+  }
+
+  .formulario .form {
+    padding: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav {
+    flex-direction: row;
+    font-size: 0.9rem;
+  }
+
+  .formulario .form {
+    padding: 20px;
+  }
+
+  .formulario {
+    max-width: 100%;
+  }
+}
+
+/* --- ANIMACIONES --- */
+@keyframes loop-infinito {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}

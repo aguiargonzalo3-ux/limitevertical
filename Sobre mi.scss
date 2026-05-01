@@ -1,0 +1,99 @@
+/* --- VARIABLES --- */
+$fuente-serif: 'Times New Roman', Times, serif;
+$fuente-cursiva: 'Caveat', cursive;
+$color-negro-trans: rgba(0, 0, 0, 0.7);
+$color-negro-suave: rgba(0, 0, 0, 0.5);
+$color-blanco: #ffffff;
+$color-hover: #f0f0f0;
+
+/* --- BASE --- */
+body {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: url('Fondos/atardercer.jpeg') no-repeat center center fixed;
+  background-size: cover;
+  font-family: sans-serif;
+  position: relative;
+  
+  // Nota: El z-index: -1 en el body puede causar que los links no funcionen. 
+  // Si el fondo te tapa el texto, es mejor usar un pseudo-elemento ::before.
+}
+
+/* --- NAVEGACIÓN --- */
+.nav {
+  position: sticky;
+  top: 0;
+  background-color: $color-negro-trans;
+  color: $color-blanco;
+  padding: 15px;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+
+  a {
+    color: $color-blanco;
+    text-decoration: none;
+    margin-right: 15px;
+    transition: transform 0.3s ease, color 0.3s ease;
+    font-family: $fuente-serif;
+
+    &:hover {
+      color: $color-hover;
+      transform: scale(1.1);
+    }
+  }
+}
+
+/* --- SECCIÓN PRINCIPAL --- */
+.section {
+  flex: 1; // Esto empuja al footer hacia abajo
+  background-color: $color-negro-suave;
+  color: $color-blanco;
+  padding: 15px;
+  border-radius: 10px;
+  margin: 70px;
+
+  .p {
+    text-align: center;
+    font-size: 1.5rem;
+    font-family: $fuente-cursiva;
+    margin: 0 auto;
+  }
+}
+
+/* --- FOOTER --- */
+.copyright {
+  text-align: center;
+  color: $color-blanco;
+  padding: 20px;
+  width: 100%;
+  background: $color-negro-suave;
+}
+
+/* --- RESPONSIVE (Media Queries Anidadas) --- */
+@media (max-width: 1200px), (max-width: 500px) {
+  .nav {
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .section {
+    flex-direction: column;
+    text-align: center;
+    gap: 50px;
+    padding: 50px;
+    margin: 20px; // Reducimos margen en móviles
+  }
+}
+
+/* --- ANIMACIONES --- */
+@keyframes loop-infinito {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}

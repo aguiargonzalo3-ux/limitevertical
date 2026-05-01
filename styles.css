@@ -1,0 +1,236 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-image: url("Fondos/bolson.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* Mejor para móviles que el pseudo-elemento */
+  min-height: 100vh;
+  overflow-x: hidden;
+  font-family: sans-serif;
+}
+
+/* Capa de opacidad sobre el fondo */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3); /* Ajusta este color para la opacidad */
+  z-index: -1;
+}
+
+/* NAVEGACIÓN RESPONSIVE */
+.nav {
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 15px;
+  position: sticky; /* Cambiado de fixed para no pisar el contenido */
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.nav a {
+  color: white;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+  font-weight: bold;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.nav a:hover {
+  color: #f0f0f0;
+  transform: scale(1.1); /* Esto hace que se agrande al pasar el mouse */
+}
+
+/* CARRUSEL INFINITO AJUSTADO */
+.ventana-carrusel {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  margin: 20px 0;
+}
+
+.ventana-carrusel .carrusel {
+  display: flex;
+  width: max-content;
+  gap: 10px;
+  animation: loop-infinito 20s linear infinite;
+}
+
+.ventana-carrusel .carrusel:hover {
+  animation-play-state: paused;
+}
+
+.ventana-carrusel .carrusel img {
+  width: 350px; /* Tamaño más manejable */
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+/* TEXTOS Y CONTENEDORES */
+.p {
+  text-align: center;
+  font-size: 1.5rem;
+  font-family: 'Caveat', cursive;
+  padding: 20px;
+}
+
+.hero, section {
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 20px auto;
+  max-width: 90%; /* Evita que toque los bordes en móviles */
+}
+
+/* DRON - ELIMINADO EL ANCHO FIJO DE 800PX */
+.dron {
+  display: flex;
+  flex-direction: column; /* Apila contenido en móviles */
+  width: 100%;
+  max-width: 800px;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  gap: 20px;
+}
+
+video, iframe {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+.copyright {
+    text-align: center;
+    color: white;
+    padding: 20px;
+    background: rgba(0,0,0,0.5);
+}
+/* REDES SOCIALES */
+/* Contenedor general de los logos */
+.card3 {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Estilo base de los botones de redes sociales */
+.redesociales {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: #333; /* Fondo oscuro inicial */
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  text-decoration: none;
+}
+
+.socialSvg {
+  width: 25px;
+  fill: white; /* Color del icono inicial */
+  transition: all 0.3s ease;
+}
+
+/* --- ANIMACIONES INDIVIDUALES --- */
+
+/* Instagram: Fondo degradado y pulso */
+.contenedoruno:hover {
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(214, 36, 159, 0.3);
+}
+
+/* WhatsApp: Fondo verde y rebote */
+.contenedordos:hover {
+  background-color: #25D366;
+  transform: translateY(-5px) scale(1.1);
+  box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+}
+
+/* Animación de los iconos internos al hacer hover */
+.redesociales:hover .socialSvg {
+  transform: scale(1.2);
+  animation: shake 0.5s ease-in-out;
+}
+
+/* Keyframes para un ligero movimiento de vibración */
+@keyframes shake {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(10deg); }
+  50% { transform: rotate(-10deg); }
+  75% { transform: rotate(5deg); }
+  100% { transform: rotate(0deg); }
+}
+
+/*ANIMACION*/
+/* Definición de la animación */
+@keyframes loop-infinito {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%); 
+  }
+}
+
+/* Aplicación en tu código existente */
+.ventana-carrusel .carrusel {
+  display: flex;
+  width: max-content;
+  gap: 10px;
+  animation: loop-infinito 20s linear infinite;
+}
+/* --- MEDIA QUERIES OPTIMIZADAS --- */
+
+@media (max-width: 768px) {
+  .nav {
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+  
+  .hero, section {
+    margin: 15px auto;
+    padding: 15px;
+  }
+
+  .p {
+    font-size: 1.2rem;
+  }
+
+  .ventana-carrusel .carrusel img {
+    width: 250px;
+    height: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav {
+    flex-direction: row; /* Mantiene links alineados si son pocos */
+    justify-content: space-evenly;
+  }
+
+  .hero {
+    font-size: 1rem;
+  }
+}

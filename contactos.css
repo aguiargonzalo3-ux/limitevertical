@@ -1,0 +1,186 @@
+/* --- BASE Y FONDO --- */
+body {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.5)), 
+                    url("Fondos/foto.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+/* --- NAVEGACIÓN --- */
+.nav {
+  position: sticky; /* Sticky es mejor para formularios largos */
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 15px;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.nav a {
+  color: white;
+  text-decoration: none;
+  margin-right: 15px;
+  transition: transform 0.3s ease;
+
+}
+
+.nav a:hover {
+  color: #f0f0f0;
+  transform: scale(1.1); /* Esto hace que se agrande al pasar el mouse */
+}
+
+/* --- CONTENEDOR PRINCIPAL --- */
+.contenedor {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 50px; /* Reducido de 160px para evitar desbordes */
+  padding: 80px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* --- FORMULARIO --- */
+.formulario {
+  flex: 1;
+  width: 100%;
+  max-width: 500px;
+}
+
+.form {
+  color: #333;
+  font-size: large;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  background: rgba(255, 255, 255, 0.2); /* Fondo sutil para legibilidad */
+  backdrop-filter: blur(5px);
+  padding: 40px; /* Reducido de 100px para que quepa en móviles */
+  border-radius: 15px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+}
+
+/* Inputs y Textarea */
+.form input,
+.form textarea {
+  width: 100%; /* Siempre al 100% del contenedor padre */
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  outline: none;
+  transition: 0.3s;
+  font-size: 1rem;
+}
+
+/* Ajuste específico para el textarea grande que tenías como .input */
+.input {
+  min-height: 150px; /* Usamos min-height en lugar de height fijo */
+  resize: vertical;
+}
+
+.form input:focus, 
+.form textarea:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+button {
+  background-color: #111;
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+  width: fit-content;
+  align-self: center;
+}
+
+button:hover {
+  background-color: #444;
+  transform: translateY(-2px);
+}
+
+/* --- CONTACTOS --- */
+.Contactos {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  text-align: center;
+  color: #000;
+}
+
+.icono-gmail,
+.boton-wsp {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: #000;
+  transition: 0.3s;
+}
+
+.icono-gmail:hover,
+.boton-wsp:hover {
+  transform: scale(1.05);
+}
+
+.copyright {
+    text-align: center;
+    color: white;
+    padding: 20px;
+    background: rgba(0,0,0,0.5);
+}
+
+/* --- MEDIA QUERIES --- */
+
+/* Tablets y Laptops pequeñas */
+@media (max-width: 1200px) {
+  .contenedor {
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    padding-top: 40px;
+  }
+  
+  .form {
+    padding: 30px;
+  }
+}
+
+/* Móviles */
+@media (max-width: 480px) {
+  .nav {
+    flex-direction: row;
+    font-size: 0.9rem;
+  }
+
+  .form {
+    padding: 20px;
+  }
+
+  .formulario {
+    max-width: 100%;
+  }
+}
+@keyframes loop-infinito {
+  0% {
+    transform: translateX(0);
+  }
+  
+}
